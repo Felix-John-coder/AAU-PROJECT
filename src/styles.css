@@ -1,0 +1,332 @@
+/* 1. Global Centering Reset */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #eceef1; /* Modern light gray/blue */
+    font-family: 'Inter', -apple-system, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* This centers the content horizontally */
+}
+
+/* 2. Header: Logo Left, Button Right */
+header {
+    width: 100%;
+    max-width: 1200px; /* Limits how wide it stretches */
+    display: flex;
+    justify-content: space-between; /* Pushes button to the far right */
+    align-items: center;
+    padding: 40px 20px;
+    box-sizing: border-box;
+}
+
+.header-content h1 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #0f172a;
+}
+
+/* 3. Status Text Color Green (Requested) */
+#connection-status {
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-top: 5px;
+}
+
+/* When JS adds these classes, the colors change */
+.status-ok { 
+    color: #10b981 !important; /* Vibrant Green */
+}
+.status-error { 
+    color: #ef4444 !important; /* Red */
+}
+
+/* 4. The Center List (Main Content) */
+main#app {
+    width: 100%;
+    max-width: 1000px; /* Centered narrow width for focus */
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+#job-table {
+    width: 100%;
+    background: #ffffff;
+    border-collapse: collapse;
+    border-radius: 12px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    overflow: hidden; /* Keeps corners rounded */
+}
+
+#job-table th {
+    background-color: #f1f5f9;
+    padding: 16px;
+    text-align: center; /* Center the column headers */
+    color: #64748b;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+}
+
+#job-table td {
+    padding: 16px;
+    text-align: center; /* Center the actual job data */
+    border-bottom: 1px solid #e2e8f0;
+    color: #334155;
+}
+
+/* 5. Modern Create Button (Top Right) */
+#open-modal-btn {
+    background-color: #4f46e5;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.1s, background 0.2s;
+}
+
+#open-modal-btn:hover {
+    background-color: #4338ca;
+    transform: translateY(-1px);
+}
+
+/* 6. Modal Polish */
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(4px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: 16px;
+    width: 400px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+.hidden { display: none !important; }
+
+/* Status Badges */
+.badge {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: 700;
+}
+.badge.pending { background: #fef3c7; color: #92400e; }
+.badge.running { background: #dbeafe; color: #1e40af; }
+
+/* --- RESPONSIVE DESIGN --- */
+
+/* 1. Tablets and Small Laptops (under 1024px) */
+@media (max-width: 1024px) {
+    header, main#app {
+        max-width: 90%; /* Give it some breathing room on the sides */
+    }
+}
+
+/* 2. Mobile Phones (under 768px) */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column; /* Stack Title and Button vertically */
+        gap: 20px;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .header-content h1 {
+        font-size: 1.25rem; /* Smaller font for small screens */
+    }
+
+    #open-modal-btn {
+        width: 100%; /* Make button full width on mobile for easier tapping */
+    }
+
+    /* Table Responsiveness: Make it scrollable horizontally so it doesn't break */
+    main#app {
+        padding: 10px;
+        overflow-x: auto; /* Adds a scrollbar if the table is too wide */
+        display: block;   /* Allows scrolling */
+    }
+
+    #job-table {
+        min-width: 600px; /* Ensures the table doesn't get "squished" */
+    }
+
+    /* Modal Adjustments */
+    .modal-content {
+        width: 95%;
+        padding: 20px;
+        margin: 10px;
+    }
+}
+
+/* Modal Backdrop Overlay */
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.7); /* Dark slate with high transparency */
+    backdrop-filter: blur(8px);       /* Modern blurred background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+/* Modal Window Container */
+.modal-content {
+    background: #ffffff;
+    padding: 2.5rem;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 450px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    animation: modalAppear 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes modalAppear {
+    from { opacity: 0; transform: scale(0.9) translateY(10px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* Modal Typography */
+.modal-content h3 {
+    margin-top: 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 0.5rem;
+}
+
+.modal-content p {
+    color: #64748b;
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+}
+
+/* The Input Box */
+#job-name-input {
+    width: 100%;
+    padding: 14px 18px;
+    margin-bottom: 2rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    font-size: 1rem;
+    color: #1e293b;
+    background-color: #f8fafc;
+    transition: all 0.2s ease;
+    box-sizing: border-box; /* Keeps padding from breaking width */
+    outline: none;
+}
+
+#job-name-input:focus {
+    border-color: #4f46e5; /* Matches your main Indigo color */
+    background-color: #fff;
+    box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
+}
+
+/* Action Buttons Container */
+.modal-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+}
+
+/* Secondary/Cancel Button */
+.btn-secondary {
+    background: #f1f5f9;
+    color: #475569;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-secondary:hover {
+    background: #e2e8f0;
+    color: #0f172a;
+}
+
+/* Primary/Submit Button (Matches Header Button) */
+#submit-job-btn {
+    background-color: #4f46e5;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 6px -1px rgba(79, 70, 229, 0.2);
+    transition: all 0.2s;
+}
+
+#submit-job-btn:hover {
+    background-color: #4338ca;
+    transform: translateY(-1px);
+    box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.3);
+}
+
+.badge {
+    cursor: pointer;
+    transition: transform 0.1s ease, filter 0.2s;
+    user-select: none; /* Prevents text highlighting on double click */
+}
+
+.badge:hover {
+    filter: brightness(0.9);
+    transform: scale(1.05);
+}
+
+.badge:active {
+    transform: scale(0.95);
+}
+
+.header-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-danger {
+    background-color: #ef4444;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn-danger:hover {
+    background-color: #dc2626;
+}
+
+.btn-icon-danger {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: transform 0.2s;
+}
+
+.btn-icon-danger:hover {
+    transform: scale(1.2);
+}
+
+/* Checkbox styling */
+.job-checkbox {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}

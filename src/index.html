@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Dashboard | Ops View</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+    <div class="header-content">
+        <h1>System Job Dashboard</h1>
+        <div id="connection-status" class="status-indicator">Checking...</div>
+    </div>
+    <button id="delete-selected-btn" class="btn-danger hidden">Delete Selected</button>
+    <button id="open-modal-btn" class="btn-primary">+ Create New Job</button>
+</header>
+
+<main id="app">
+    <table id="job-table" class="hidden">
+    <thead>
+        <tr>
+            <th style="width: 40px;"><input type="checkbox" id="select-all" onclick="selectAllJobs(this)"></th>
+            <th>Job Name</th>
+            <th>Status</th>
+            <th>Created At</th>
+            <th>Last Update</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody id="job-list"></tbody>
+</table>
+</main>
+
+<div id="job-modal" class="modal hidden">
+    <div class="modal-content">
+        <h3>Create New Job</h3>
+        <input type="text" id="job-name-input" placeholder="Enter job name...">
+        <div class="modal-actions">
+            <button id="close-modal-btn" class="btn-secondary">Cancel</button>
+            <button id="submit-job-btn" class="btn-primary">Submit Job</button>
+        </div>
+    </div>
+</div>
+
+    <script src="config.js"></script>
+    <script src="dashboard.js"></script>
+</body>
+</html>
