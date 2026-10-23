@@ -35,7 +35,7 @@ jobs:
           echo "mytag=$tags" >> "$GITHUB_OUTPUT"
       - name: load image to runner 
         run: docker load -i image.tar 
-      - name: run Trivy scan # using trivy to scan artifact for vulnerabilities.. this is import for safe deployment of healthy containers
+      - name: run scan
         id: trivy
         uses: aquasecurity/trivy-action@0.35.0 
         with:
@@ -47,7 +47,7 @@ jobs:
           image-ref: ${{ steps.tag.outputs.mytag }}
       - name: check
         if:  steps.trivy.outcome == 'success'
-        run: echo "Passed Trivy security check!"
+        run: echo "Passed Security Check!"
     #==================
     #Push to aws ecr 
     #=============
