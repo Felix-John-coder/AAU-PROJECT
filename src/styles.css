@@ -124,11 +124,9 @@ select:focus-visible {
     margin-top: 1px;
     font-size: 13px;
     font-weight: 700;
+    color: #036c30;
 }
 
-.status-ok {
-    color: var(--green) !important;
-}
 
 /* MAIN LAYOUT */
 
