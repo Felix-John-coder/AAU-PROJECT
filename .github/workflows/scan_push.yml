@@ -26,11 +26,11 @@ jobs:
           role-to-assume: ${{secrets.AWS_ROLE}}
           aws-region: ${{secrets.AWS_REGION}}
       - name: download image  
-        run: aws s3 cp s3://project-a-kubernetes-s3-bucket1/image.tar . 
+        run: aws s3 cp s3://project-a-kubernetes-s3-bucket2/image.tar . 
       - name: download image metadata 
         id: tag
         run: |
-          aws s3 cp s3://project-a-kubernetes-s3-bucket1/image_tag.txt  .  
+          aws s3 cp s3://project-a-kubernetes-s3-bucket2/image_tag.txt  .  
           tags=$(cat "image_tag.txt" | grep "sha-")
           echo "mytag=$tags" >> "$GITHUB_OUTPUT"
       - name: load image to runner 
@@ -62,13 +62,13 @@ jobs:
           role-to-assume: ${{secrets.AWS_ROLE}}
           aws-region: ${{secrets.AWS_REGION}}
       - name: download image  
-        run: aws s3 cp s3://project-a-kubernetes-s3-bucket1/image.tar . 
+        run: aws s3 cp s3://project-a-kubernetes-s3-bucket2/image.tar . 
       - name: load image to runner 
         run: docker load -i image.tar 
       - name: download image metadata 
         id: the_tag
         run: |
-          aws s3 cp s3://project-a-kubernetes-s3-bucket1/image_tag.txt  .  
+          aws s3 cp s3://project-a-kubernetes-s3-bucket2/image_tag.txt  .  
           tags=$(cat "image_tag.txt" | grep "sha-")
           echo "my_tag=$tags" >> "$GITHUB_OUTPUT"
       - name: login to ecr 
