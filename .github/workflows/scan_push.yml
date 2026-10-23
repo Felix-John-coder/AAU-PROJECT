@@ -121,4 +121,4 @@ jobs:
             echo "Checking container status..."
             sudo docker ps --filter name=aau-project
 
-            echo "Deployment completed!"
+            echo "Deployment Completed!"
