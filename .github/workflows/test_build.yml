@@ -91,7 +91,7 @@ jobs:
           cache-from: type=local,src=/tmp/cache
           cache-to: type=local,dest=/tmp/cache-new 
           platforms: linux/amd64 
-        # cleaning up the old cache file and replace it with a new one.. this increase the build time and clean up the cache directory
+        # cleaning up the old cache file and replace it with a new one.. this increase the build time and clean up the cache directory for faster build
       - name: cleaning up old cached file 
         run: | 
           rm -rf /tmp/cache 
