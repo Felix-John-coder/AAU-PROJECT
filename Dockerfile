@@ -1,7 +1,7 @@
 
-FROM nginx:latest
-#FROM nginx:1.14.0
+FROM nginx:alpine
 
+# Copy frontend files
 COPY src/ /usr/share/nginx/html/
 
 # Copy Nginx configuration
@@ -18,4 +18,4 @@ RUN chown -R nginx:nginx /usr/share/nginx/html \
 # Run Nginx as a non-root user
 USER nginx
 
-EXPOSE 80
+EXPOSE 8080
