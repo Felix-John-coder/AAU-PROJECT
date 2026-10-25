@@ -5,7 +5,7 @@ FROM nginx:alpine
 RUN rm -rf /usr/share/nginx/html/*
 COPY src/ /usr/share/nginx/html
 
-#RUN apk update && apk upgrade --no-cache
+RUN apk update && apk upgrade --no-cache
 # Copy nginx config
 COPY nginx.conf /etc/nginx/conf.d/default.conf 
 
@@ -18,6 +18,6 @@ RUN chown -R nginx:nginx /usr/share/nginx/html \
     && chown nginx:nginx /var/run/nginx.pid
 
 # Run Nginx as a non-root user
-#USER nginx
+USER nginx
 
 EXPOSE 80
