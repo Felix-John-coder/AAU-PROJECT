@@ -6,6 +6,8 @@ COPY src/ /usr/share/nginx/html/
 
 # Copy Nginx configuration
 COPY nginx.conf /etc/nginx/conf.d/default.conf
+#Update container env
+RUN apk update && apk upgrade --no-cache
 
 # Create a non-root user and grant access to required files
 RUN chown -R nginx:nginx /usr/share/nginx/html \
