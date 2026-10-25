@@ -13,8 +13,25 @@ concurrency:
   cancel-in-progress: true 
   group: ${{github.ref}}
 jobs:
+  Filesystem-scan:
+    name: Scan Filesystem
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Run filesystem scan
+        uses: aquasecurity/trivy-action@v0.36.0
+        with:
+          scan-type: fs
+          scan-ref: .
+          scanners: vuln,secret,misconfig
+          severity: HIGH,CRITICAL
+          exit-code: '1'
+
     #============
-    #Trivy security scan
+    #security scan
     #==============
   security_scan: 
     runs-on: ubuntu-latest 
@@ -37,7 +54,7 @@ jobs:
         run: docker load -i image.tar 
       - name: run scan
         id: trivy
-        uses: aquasecurity/trivy-action@0.35.0 
+        uses: aquasecurity/trivy-action@v0.36.0 
         with:
           format: 'table'
           severity: 'CRITICAL,HIGH'
