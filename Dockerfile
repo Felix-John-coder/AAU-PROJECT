@@ -1,12 +1,11 @@
-#FROM nginx:alpine
-FROM nginx:1.14.0
-# Copy frontend files
-COPY src/ /usr/share/nginx/html/
+FROM nginx:alpine
 
-# Copy Nginx configuration
-COPY nginx.conf /etc/nginx/conf.d/default.conf
-#Update container env
-RUN apk update && apk upgrade --no-cache
+# Copy source code
+RUN rm -rf /usr/share/nginx/html/*
+COPY src/ /usr/share/nginx/html
+
+# Copy nginx config
+COPY nginx.conf /etc/nginx/conf.d/default.conf 
 
 # Create a non-root user and grant access to required files
 RUN chown -R nginx:nginx /usr/share/nginx/html \
