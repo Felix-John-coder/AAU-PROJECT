@@ -4,6 +4,7 @@ FROM nginx:alpine
 RUN rm -rf /usr/share/nginx/html/*
 COPY src/ /usr/share/nginx/html
 
+RUN apk update && apk upgrade --no-cache
 # Copy nginx config
 COPY nginx.conf /etc/nginx/conf.d/default.conf 
 
