@@ -1,6 +1,5 @@
-
 FROM nginx:alpine
-
+#FROM nginx:1.14.0
 # Copy frontend files
 COPY src/ /usr/share/nginx/html/
 
@@ -20,4 +19,4 @@ RUN chown -R nginx:nginx /usr/share/nginx/html \
 # Run Nginx as a non-root user
 USER nginx
 
-EXPOSE 8080
+EXPOSE 80
