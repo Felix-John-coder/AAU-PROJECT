@@ -1,10 +1,21 @@
+
 FROM nginx:latest
 #FROM nginx:1.14.0
 
 COPY src/ /usr/share/nginx/html/
 
+# Copy Nginx configuration
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-EXPOSE 80
+# Create a non-root user and grant access to required files
+RUN chown -R nginx:nginx /usr/share/nginx/html \
+    /var/cache/nginx \
+    /var/log/nginx \
+    /etc/nginx \
+    && touch /var/run/nginx.pid \
+    && chown nginx:nginx /var/run/nginx.pid
 
-# Use the default NGINX entrypoint (already included in nginx:alpine)
+# Run Nginx as a non-root user
+USER nginx
+
+EXPOSE 80
