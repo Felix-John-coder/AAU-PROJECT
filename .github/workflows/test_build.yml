@@ -71,7 +71,7 @@ jobs:
           tags: |
             type=sha,prefix=sha-
             type=raw,value=latest 
-        # This build the image 
+        # This build and package the image 
       - name: build time 
         uses: docker/build-push-action@v6 
         with: 
