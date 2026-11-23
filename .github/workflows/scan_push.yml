@@ -12,11 +12,12 @@ permissions:
 concurrency: 
   cancel-in-progress: true 
   group: ${{github.ref}}
+
 jobs:
   Filesystem_scan:
     name: Scan Filesystem
     runs-on: ubuntu-latest
-
+    if: github.event.workflow_run.conclusion == 'success'
     steps:
       - name: Checkout source code
         uses: actions/checkout@v4
