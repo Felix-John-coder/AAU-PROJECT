@@ -1,8 +1,9 @@
 window.APP_CONFIG = {
-  API_BASE_URL: "sk_live_1234567890abcdef1234567890abcdef"
+  API_BASE_URL: "$API_BASE_URL"
 };
 
 //Intentionally fake api key for security testing
+;
 
 AWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE
 AWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
