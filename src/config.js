@@ -3,4 +3,5 @@ window.APP_CONFIG = {
 };
 
 //Intentionally fake api key for security testing
-API_KEY = "sk_live_1234567890abcdef1234567890abcdef"
+
+export const API_KEY =  "sk_live_1234567890abcdef1234567890abcdef";
