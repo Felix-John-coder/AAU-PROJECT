@@ -1,5 +1,5 @@
-#FROM nginx:alpine
-FROM nginx:1.14.0
+FROM nginx:alpine
+#FROM nginx:1.14.0
 
 # Copy source code
 RUN rm -rf /usr/share/nginx/html/*
